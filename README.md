@@ -1,12 +1,8 @@
-# Life1Recoveryfrom flask import Flask
+from flask import Flask
 from threading import Thread
 import telebot
-import requests
-import threading
-import time
-import random
 
-# Flask web server to keep bot alive
+# Keep-alive web server for Render
 app = Flask('')
 
 @app.route('/')
@@ -20,17 +16,16 @@ def keep_alive():
     t = Thread(target=run)
     t.start()
 
-# Keep-alive for free Render hosting
 keep_alive()
 
-# Telegram & Hugging Face Setup
+# Telegram Bot Setup
 BOT_TOKEN = '7563892304:AAGv0A7W4aOTSrlThjw05_HO1xed5fdx6hA'
-HF_TOKEN = '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'
 bot = telebot.TeleBot(BOT_TOKEN)
 
 GUMROAD_LINK = "https://cainjesse.gumroad.com/l/dcmlm"
 
-motivational_quotes = [
-    "Just for today, I will stay clean.",
-    "You're stronger than the urge.",
-    "Progress
+# Bot Commands
+@bot.message_handler(commands=['start'])
+def start(message):
+    bot.send_message(message.chat.id,
+        "👋 Welcome to RecoveryBot (Test Mode)!\n\n💬 Ask me anything about addiction, relapse, or staying clean.\n\n📘 /12steps – Learn the 12 Steps\n🌐 /resources – Find help
